@@ -15,7 +15,7 @@ def test():
         userId = request.args.get('userId', '')
         userPassword = request.args.get('userPassword', '')
 
-    return render_template('scheduleTop.html',userId=userId,userPassword=userPassword)
+    return render_template('schedule/scheduleTop.html',userId=userId,userPassword=userPassword)
 
 if __name__ == "__main__":
     # webサーバーの立ち上げ

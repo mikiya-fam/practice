@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang ="ja">
+  <head>
+    <link href="/static/lib/fullcalendar-4.3.1/packages/core/main.css" rel="stylesheet" />
+    <link href="/static/lib/fullcalendar-4.3.1/packages/daygrid/main.css" rel="stylesheet" />
+    <link href="/static/lib/fullcalendar-4.3.1/packages/timegrid/main.css" rel="stylesheet" />
+    <link href="/static/lib/fullcalendar-4.3.1/packages/list/main.css" rel="stylesheet" />
+    <script src="/static/lib/fullcalendar-4.3.1/packages/core/main.js"></script>
+    <script src="/static/lib/fullcalendar-4.3.1/packages/interaction/main.js"></script>
+    <script src="/static/lib/fullcalendar-4.3.1/packages/daygrid/main.js"></script>
+    <script src="/static/lib/fullcalendar-4.3.1/packages/timegrid/main.js"></script>
+    <script src="/static/lib/fullcalendar-4.3.1/packages/list/main.js"></script>    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+    
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+          header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+          },
+          defaultDate: '2019-08-12',
+          navLinks: true, // can click day/week names to navigate views
+          businessHours: true, // display business hours
+          editable: true,
+          events: [
+          {
+            title: 'Business Lunch',
+            start: '2019-08-03T13:00:00',
+            constraint: 'businessHours'
+          }
+        ]
+
+         
+        
+        });
+    
+        calendar.render();
+      });
+    
+    </script>
+  </head>
+  <body>
+    <div id='calendar'></div>
+  </body>
+</html>
