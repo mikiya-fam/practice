@@ -31,10 +31,17 @@
             start: '2019-08-03T13:00:00',
             constraint: 'businessHours'
           }
-        ]
-
-         
-        
+        ],
+        dayClick: function(date, jsEvent, view) {
+          //クリックした日付が取れるよ
+          alert('Clicked on: ');
+         },
+         eventClick: function(date, jsEvent, view) {
+          //クリックした日付が取れるよ
+          // alert('Clicked on: ');
+          window.location.href = '/edit/';
+          
+         }
         });
     
         calendar.render();
