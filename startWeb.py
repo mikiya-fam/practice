@@ -32,6 +32,22 @@ def editComplete():
 
     return render_template('schedule/scheduleeditComplete.html',time=time,eventName=eventName,place=place,comment=comment,participant=participant)
 
+#############ユーザ関連#############
+# 新規登録画面初期表示処理
+@app.route('/userRegistInit/')
+def userRegistInitAction():
+    # 新規登録画面を表示する
+    return render_template('user/userRegist.html')
+
+# 新規登録画面初期表示処理
+@app.route('/userRegistCommit/', methods = ['POST','GET'])
+def userRegistCommitAction():
+    # 入力値を取得する
+    # DB登録登録する
+    # 登録完了画面を表示する
+    return render_template('user/userRegistComplete.html')
+#############ユーザ関連#############
+
 
 if __name__ == "__main__":
     # webサーバーの立ち上げ

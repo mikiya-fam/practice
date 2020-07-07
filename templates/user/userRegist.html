@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang ="ja">
+  {% include "commonHeader.html" %}
+  <body>
+    <div class="container">
+      <!-- ヘッダーエリア -->
+      <div class="container">
+        {% include "header.html" %}
+      </div>
+      <!-- ヘッダーエリア -->
+      <!-- 見出しエリア -->
+      <div class="container">
+        <p class="h3 border-bottom">ユーザ登録</p>
+      </div>
+      <!-- 見出しエリア -->
+
+      <!-- 入力項目エリア -->
+      <form action="/userRegistCommit/" method = "POST">
+        <div class="container">
+          <div class="row col-xs-2">
+            <div class="form-group">
+              <label>姓</label>
+              <input class="form-control" type="text">
+            </div>
+          </div>
+          <div class="row col-xs-2">
+            <div class="form-group">
+              <label class="control-label">名</label>
+              <input class="form-control" type="text">
+            </div>
+          </div>
+          <div class="row col-xs-2">
+            <div class="form-group">
+              <label class="control-label">ユーザID</label>
+              <input class="form-control" type="text">
+            </div>
+          </div>
+          <div class="row col-xs-2">
+            <div class="form-group">
+              <label class="control-label">パスワード</label>
+              <input class="form-control" type="text">
+            </div>
+          </div>
+          <input type="submit" class="btn btn-secondary" value="登録">
+        </div>
+      </form>
+      <!-- 入力項目エリア -->
+    </div>
+  </body>
+</html>
