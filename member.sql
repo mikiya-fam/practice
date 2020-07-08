@@ -1,5 +1,5 @@
 CREATE TABLE T_MEMBER(
-    id int not null primary key,
+    member_id int not null primary key,
     last_name varchar(10),
     first_name varchar(10),
     sex char(1),
