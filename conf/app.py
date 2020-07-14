@@ -1,10 +1,10 @@
 from flask import Flask
-from database import init_db
-import models
+from conf.database import init_db
+import conf.models
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('config.Config')
+    app.config.from_object('conf.config.Config')
 
     init_db(app)
 
