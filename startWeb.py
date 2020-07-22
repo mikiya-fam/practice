@@ -1,5 +1,6 @@
 # coding: utf-8
 from flask import Flask, render_template,request
+import datetime
 import mysql.connector
 
 # Webサーバインスタンスの生成
