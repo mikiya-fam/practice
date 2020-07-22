@@ -1,8 +1,19 @@
 # coding: utf-8
 from flask import Flask, render_template,request
+import mysql.connector
 
 # Webサーバインスタンスの生成
 app = Flask(__name__) 
+
+#DB接続情報
+def conn_db():
+      conn = mysql.connector.connect(
+              host = 'localhost',      #localhostでもOK
+              user = 'root',
+              passwd = 'root',
+              db = 'mikiya'
+      )
+      return conn
 
 # http://localhost:5000/にリクエストが来たときの処理
 @app.route("/")
@@ -14,7 +25,16 @@ def test():
     if request.method == 'GET':
         userId = request.args.get('userId', '')
         userPassword = request.args.get('userPassword', '')
-
+        #DB接続インスタンス
+        conn = conn_db()
+        # カーソルを取得
+        cursor = conn.cursor()
+        # ログイン処理（入力されたユーザIDとパスワードの組み合わせのデータが存在するか）
+        cursor.execute("SELECT * FROM T_MEMBER")
+        # データが0件の場合、ログイン画面へ
+        if cursor.rowcount == 0:
+           return render_template('login.html')
+    # ログイン結果がOKの場合、スケジュールトップへ
     return render_template('schedule/scheduleTop.html',userId=userId,userPassword=userPassword)
 
 @app.route("/edit/")

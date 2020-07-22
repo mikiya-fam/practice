@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang ="ja">
-  <head>
-    <form action="test/" method = "GET">
-
-      <p>ユーザ名：<br>
-      <input type="text" name="userId" value="">
-    </p>
-
-      <p>password：<br>
-      <input type="text" name="userPassword" value="">
-    </p>
-      
-      <input type="submit" value="login">
-    </form>      
-    <!-- 新規登録ボタン -->
-    <form action="userRegistInit/" method = "GET">
-      <input type="submit" value="新規登録">
-    </form>      
-    <!-- 新規登録ボタン -->
-  </head>
+  {% include "commonHeader.html" %}
+  <div class="container">
+      <!-- ヘッダーエリア -->
+      <div class="container">
+        {% include "header.html" %}
+      </div>
+      <!-- ヘッダーエリア -->
+      <body>
+        <form action="test/" method = "GET">
+          <p>ユーザ名：<br>
+            <input type="text" name="userId" value="">
+          </p>
+          <p>password：<br>
+            <input type="text" name="userPassword" value="">
+          </p>
+          <input type="submit" value="login">
+        </form>
+        <!-- 新規登録ボタン -->
+        <form action="userRegistInit/" method = "GET">
+          <input type="submit" value="新規登録">
+        </form>      
+        <!-- 新規登録ボタン -->
+        </div>
+  </body>
 </html>
