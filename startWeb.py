@@ -20,22 +20,27 @@ def conn_db():
 def index():
     return render_template('login.html')
 
-@app.route("/test/", methods = ['POST','GET'])
+@app.route("/test/", methods = ['POST'])
 def test():
-    if request.method == 'GET':
-        userId = request.args.get('userId', '')
-        userPassword = request.args.get('userPassword', '')
-        #DB接続インスタンス
+        userId = request.form["userId"]
+        userPassword = request.form["userPassword"]
+        print(userId)
+        print(userPassword)
+        # #DB接続インスタンス
         conn = conn_db()
-        # カーソルを取得
+        # # カーソルを取得
         cursor = conn.cursor()
         # ログイン処理（入力されたユーザIDとパスワードの組み合わせのデータが存在するか）
-        cursor.execute("SELECT * FROM T_MEMBER")
-        # データが0件の場合、ログイン画面へ
+        # cursor.execute("SELECT * FROM T_MEMBER where user_Id='uycep2ed' and Password='tsuka0807'")
+        cursor.execute("SELECT * FROM T_MEMBER WHERE USER_ID = %(user_id)s AND PASSWORD = %(password)s", {'user_id': userId, 'password': userPassword})
+
+        # # データが0件の場合、ログイン画面へ
+        print(cursor.fetchall())
+        print(cursor.rowcount)
         if cursor.rowcount == 0:
            return render_template('login.html')
-    # ログイン結果がOKの場合、スケジュールトップへ
-    return render_template('schedule/scheduleTop.html',userId=userId,userPassword=userPassword)
+        # ログイン結果がOKの場合、スケジュールトップへ
+        return render_template('schedule/scheduleTop.html',userId=userId,userPassword=userPassword)
 
 @app.route("/edit/")
 def edit():
