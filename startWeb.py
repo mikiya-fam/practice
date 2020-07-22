@@ -57,18 +57,35 @@ def editComplete():
 
     return render_template('schedule/scheduleeditComplete.html',time=time,eventName=eventName,place=place,comment=comment,participant=participant)
 
-#############ユーザ関連#############
 # 新規登録画面初期表示処理
-@app.route('/userRegistInit/')
-def userRegistInitAction():
-    # 新規登録画面を表示する
-    return render_template('user/userRegist.html')
-
-# 新規登録画面初期表示処理
-@app.route('/userRegistCommit/', methods = ['POST','GET'])
+@app.route('/userRegistCommit/', methods=['POST'])
 def userRegistCommitAction():
     # 入力値を取得する
-    # DB登録登録する
+    # 姓
+    lastName = request.form["lastName"]
+    # 名
+    firstName = request.form["firstName"]
+    # 名
+    sex = request.form["sex"]
+    # ユーザID
+    userId = request.form["userId"]
+    # パスワード
+    password = request.form["password"]
+    # 登録日時
+    createdDate = datetime.datetime.now()
+    # 更新日時
+    updatedDate = datetime.datetime.now()
+    # 削除フラグ
+    deleteFlag = "0"
+
+    #DB接続インスタンス
+    conn = conn_db()
+    # カーソルを取得
+    cursor = conn.cursor()
+    # 登録処理
+    cursor.execute("INSERT INTO T_MEMBER (LAST_NAME, FIRST_NAME, SEX, USER_ID, PASSWORD, CREATED_DATE, UPDATED_DATE, DELETE_FLAG ) VALUES (%(lastName)s, %(firstName)s, %(sex)s, %(userId)s, %(password)s, %(createdDate)s, %(updatedDate)s, %(deleteFlag)s)"
+    , {'lastName': lastName, 'firstName': firstName, 'sex': sex, 'userId': userId, 'password': password, 'createdDate': createdDate, 'updatedDate': updatedDate, 'deleteFlag': deleteFlag})
+    conn.commit()
     # 登録完了画面を表示する
     return render_template('user/userRegistComplete.html')
 #############ユーザ関連#############
